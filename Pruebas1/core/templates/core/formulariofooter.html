@@ -1,0 +1,24 @@
+
+        <div class="container">
+            <div class="row">
+                <table class="table">
+                  <tr>
+                    <td>Nombre Pintura</td>
+                    <td>Precio Pintura</td>
+                    <td>Autor</td>
+                    <td>Categoria</td>
+                    <td colspan="2">Opciones</td>
+                  </tr>
+                  {% for v in Pinturas %}
+                    <tr>
+                      <td>{{v.nombre_pintura}}</td>
+                      <td>{{v.precio_pintura}}</td>
+                      <td>{{v.autor}}</td>
+                      <td>{{v.categoria}}</td>
+                      <td><a href="{% url '' v.idPintura %}">Modificar</a></td>
+                      <td><a href="{% url '' v.idPintura %}">Eliminar</a></td>
+                    </tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>

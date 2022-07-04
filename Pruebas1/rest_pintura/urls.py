@@ -4,6 +4,6 @@ from .views import lista_pintura, detalle_pintura
 app_name = 'rest_pintura'
 
 urlpatterns = [
-    path('<id>', lista_pintura, name="lista_pintura"),
-    path('<id>/datallepintura', detalle_pintura, name="detalle_pintura"),
+    path('lista_pinturas', lista_pintura, name="lista_pintura"),
+    path('detalle_pintura/<id>', detalle_pintura, name="detalle_pintura"),
 ]

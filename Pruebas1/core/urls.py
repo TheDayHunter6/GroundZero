@@ -36,7 +36,7 @@ urlpatterns = [
     path('Pag18',Pag18, name="Pag18"),
     path('api/cuenta/', registro_view, name="registro_view"),
     path('api/login/', login1, name="login1"),
-    path('api/pintura/', lista_pintura, name='lista_pintura'),
+    
     
 
     #urls rest

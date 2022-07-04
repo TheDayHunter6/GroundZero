@@ -12,33 +12,32 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 @permission_classes((IsAuthenticated))
-@api_view(['GET'])
-def lista_pintura(request, id):
-    """
-    Lista de pinturas
-    """
-    try:
-        Pinturas = Pinturas.objects.get(id=id)
-    except:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
+@api_view(['GET', 'POST'])
+def lista_pintura(request):
     if request.method == 'GET':
-        serializer = PinturasSerializer(Pinturas)
+        lista = Pinturas.objects.all()
+        serializer = PinturasSerializer(lista, many=True)
         return Response(serializer.data)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = PinturasSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@permission_classes((IsAuthenticated))
 @api_view(['GET', 'PUT', 'DELETE'])
 def detalle_pintura(request, id):
-    """
-    Get, update o delete de una pintura en particular
-    """
     try:
-        Pinturas = Pinturas.objects.get(idPintura=id)
+        pinturas = Pinturas.objects.get(idPintura=id)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = PinturasSerializer(Pinturas)
+        serializer = PinturasSerializer(pinturas)
         return Response(serializer.data)
 
     if request.method == 'PUT':

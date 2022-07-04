@@ -31,7 +31,7 @@ class Categoria(models.Model):
 
 # Modelo para Pinturas
 class Pinturas(models.Model):
-  id = models.CharField(max_length = 6, primary_key = True, verbose_name = 'id')
+  idPintura = models.IntegerField(max_length = 6, primary_key = True, verbose_name = 'id pintura')
   nombre_pintura = models.CharField(max_length = 20, verbose_name = 'Nombre Pintura')
   precio_pintura = models.IntegerField (null=True, blank =True, verbose_name = 'Precio')
   autor = models.ForeignKey (Autor, on_delete = models.CASCADE)
@@ -39,7 +39,7 @@ class Pinturas(models.Model):
 
 
   def __str__(self):
-    return self.idPintura 
+    return self.nombre_pintura
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

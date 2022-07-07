@@ -11,7 +11,7 @@ from rest_framework.authtoken.models import Token
 
 #Modelo para Autores
 class Autor(models.Model):
-  idAutor = models.IntegerField(primary_key = True, verbose_name = 'id Autor')
+  idAutor = models.AutoField(primary_key=True, verbose_name='id Autor')
   pnombreAutor = models.CharField(max_length = 60, verbose_name = 'Primer nombre')
   appaternoAutor = models.CharField(max_length = 60, verbose_name = 'Apellido')
   edad = models.IntegerField(verbose_name = 'Edad')
@@ -23,7 +23,7 @@ class Autor(models.Model):
 
 #Modelo para Categorias
 class Categoria(models.Model):
-  idCategoria = models.IntegerField(primary_key = True, verbose_name = 'id de categoria')
+  idCategoria = models.AutoField(primary_key=True, verbose_name='id de categoria')
   nombreCategoria = models.CharField(max_length = 50, verbose_name = 'Nombre de la categoria')
 
   def __str__(self):
@@ -31,12 +31,13 @@ class Categoria(models.Model):
 
 # Modelo para Pinturas
 class Pinturas(models.Model):
-  idPintura = models.IntegerField(max_length = 6, primary_key = True, verbose_name = 'id pintura')
+  idPintura = models.AutoField(primary_key=True, verbose_name='id Pintura')
+  fotoPintura = models.ImageField(upload_to="pics/%y/%m/%d/", null=True)
   nombre_pintura = models.CharField(max_length = 20, verbose_name = 'Nombre Pintura')
+  descripcion = models.TextField(max_length= 500, null= True, blank =True)
   precio_pintura = models.IntegerField (null=True, blank =True, verbose_name = 'Precio')
   autor = models.ForeignKey (Autor, on_delete = models.CASCADE)
   categoria = models.ForeignKey(Categoria, on_delete = models.CASCADE)
-
 
   def __str__(self):
     return self.nombre_pintura

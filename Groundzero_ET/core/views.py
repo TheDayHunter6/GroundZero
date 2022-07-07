@@ -2,8 +2,8 @@ from email import message
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Pinturas
-from .forms import  crearUsuario
+from .models import Autor, Pinturas
+from .forms import  crearUsuario, subirPintura
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -12,10 +12,14 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 
+
 # Create your views here.
 
 def home(request):
     return render(request,'core/index.html')
+
+def mis_pinturas(request):
+    return render(request,'core/mis-pinturas.html')
 
 def paglogin(request):
     page = 'login'
@@ -86,3 +90,15 @@ def listapinturas(request):
         'Pinturas': lista,
     }
     return render(request, 'core/index.html', contexto)
+
+def subir_pintura(request):    
+    form = subirPintura()
+    
+    if request.method== 'POST':
+        form = subirPintura(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect ('home')
+    context = {'form':form} 
+    return render(request, 'core/subirpintura.html', context)
+

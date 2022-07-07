@@ -17,4 +17,9 @@ class crearUsuario(UserCreationForm):
         
         ]
 
-        
+
+class subirPintura(ModelForm):
+
+    class Meta:
+        model = Pinturas
+        fields = ['image', 'nombre_pintura', 'autor', 'precio_pintura','descripcion','fecha_creacion']

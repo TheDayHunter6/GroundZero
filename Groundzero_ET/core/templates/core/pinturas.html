@@ -36,17 +36,19 @@
           <hr>
         </div>
           {% for p in pinturas %}
-          <div class="project-img">
-  
-            <img src="{{ p.image.url }}" alt="imagenPintura">
-            <div>
-              <h2> Pintura: {{ p.nombre_pintura }}</h2>
-              <h2> Precio {{ p.precio_pintura }}</h2>
-              <h2> Autor: {{ p.autor }}</h2>
-              <h2>Descripcion:  {{ p.descripcion }}</h2>
-              <h2> Fecha de creacion: {{ p.fecha_creacion }}</h2>
+            {% if p.aprobada == True %}
+            <div class="project-img">
+              
+              <img src="{{ p.image.url }}" alt="imagenPintura",style= >
+              <div>
+                <h2> Pintura: {{ p.nombre_pintura }}</h2>
+                <h2> Precio {{ p.precio_pintura }}</h2>
+                <h2> Autor: {{ p.autor }}</h2>
+                <h2>Descripcion:  {{ p.descripcion }}</h2>
+                <h2> Fecha de creacion: {{ p.fecha_creacion }}</h2>
+              </div>
             </div>
-          </div>
+            {% endif %}
           {% endfor %}
       </div>
     </div>

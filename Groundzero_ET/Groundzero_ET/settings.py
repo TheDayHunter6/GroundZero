@@ -94,7 +94,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'xe',
-        'USER': 'c##ET1',
+        'USER': 'c##ET3',
         'PASSWORD': 'zero1234',
         'TEST': {
             'USER': 'default_test',

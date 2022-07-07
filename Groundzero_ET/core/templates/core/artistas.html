@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'main.html' %}
+  {% load static%}
+
+  {% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, inictial-scale=1.0">
+        <title>Artistas Ground Zero</title>
+     <!-- Estilos Css -->
+     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+     <link rel="stylesheet" href="{% static 'styles/estiloMapa.css' %}">
+     <script src="{%static 'js/parsley.js'%}"></script>
+     <link rel="stylesheet" href="{%static 'css/parsley.css'%}">
+     <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500,700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src="https://kit.fontawesome.com/35db202371.js"></script>
+     <script src="{% static 'js/app.js' %}"></script>
+</head>
+<style>
+    * {box-sizing: border-box;}
+    
+    .body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #e9e9e9;
+    }
+    
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #2196F3;
+      color: white;
+    }
+    
+    .topnav .search-container {
+      float: right;
+    }
+    
+    .topnav input[type=text] {
+      padding: 6px;
+      margin-top: 8px;
+      font-size: 17px;
+      border: none;
+    }
+    
+    .topnav .search-container button {
+      float: right;
+      padding: 6px 10px;
+      margin-top: 8px;
+      margin-right: 16px;
+      background: #ddd;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .topnav .search-container button:hover {
+      background: #ccc;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .topnav .search-container {
+        float: none;
+      }
+      .topnav a, .topnav input[type=text], .topnav .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+      }
+      .topnav input[type=text] {
+        border: 1px solid #ccc;  
+      }
+    }
+    </style>
+    </head>
+
+    <body>
+      <header>
+        
+        <!-- Imagen Header -->
+    <div class="img-header">
+      <div class="welcome">
+        <h1>Perfiles de Artistas</h1>
+      </div>       
+     </div>
+     
+     <div class="skew-abajo"></div>
+        <h2 align="center">Artistas Destacados</h2>
+        <div align="center" class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
+            
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <div class="item">
+                            <img class="imagen" src="{%static 'img/Paul Morocho.jpg'%}" alt="..." style="width:50%;">
+                            <div class="carousel-caption">  
+                            <a href="{%url 'Pag7'%}">            
+                            <h2>Paul Morocho</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="imagen" src="{%static 'img/Vassily-Kandinsky.jpeg'%}" alt="..." style="width:35%;">
+                        <div class="carousel-caption">
+                        <a href="{%url 'Pag9'%}">
+                        <h2>Kandinsky Vassily</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="imagen" src="{%static 'img/Rubén de Luis.jpg'%}" alt="..." style="width:40%;">
+                        <div class="carousel-caption">
+                        <a href="{%url 'Pag11'%}">
+                        <h2>Rubén de Luis</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="imagen" src="{%static 'img/Edward Hopper.jpg'%}" alt="..." style="width:50%;">
+                        <div class="carousel-caption">
+                        <a href="{%url 'Pag13'%}">
+                        <h2>Edward Hopper</h2>
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                </div>
+            </div>
+          </div>
+<main>
+<!-- Nuestros proyectos -->
+<section class="our-projects">
+<div class="skew-arriba"></div>
+<div class="deg-background"></div>
+ 
+ <div class="ejeZproject">
+    <div class="container-project">
+      <div class="project-title">
+        <h2>Otras Artistas</h2>
+        <hr>
+      </div>
+        <div class="project-img">
+          <div class="item" align="left">
+            <img class="imagen" src="{%static 'img/Jamel Akib.jpg'%}" alt="..." style="width:100%;">
+            <a href="{%url 'Pag15'%}">
+            <h2>Jamel Akib</h2></a>
+            </div>
+          <div class="item" align="right">
+            <img class="imagen" src="{%static 'img/Leonid Afremov.jpg'%}" alt="..." style="width:50%;">
+            <a href="{%url 'Pag17'%}">
+            <h2>Leonid Afremov</h2></a>
+          </div>
+        </div>
+      </div>
+    </div>
+ </section>
+</main> 
+{%include 'core/footer2.html'%}
+</body>
+</html>
+{% endblock content %}

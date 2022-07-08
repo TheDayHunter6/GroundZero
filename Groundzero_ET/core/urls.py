@@ -1,7 +1,8 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
 from .views import admin_contacto, administrador, home, logoutUser, paglogin, pagRegistro,  artistas, pinturas, pinturas2, compra, formulariofooter,subir_pintura, mis_pinturas, admin_pinturas, modificar_pintura, eliminar_pintura, administrador, contacto
-
+from django.conf import settings
+from django.conf.urls.static import static
 #from cuenta.views import (registro_view, login1)
 from api_pintura.views import(lista_pintura, detalle_pintura)
 

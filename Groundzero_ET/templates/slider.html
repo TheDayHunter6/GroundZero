@@ -1,0 +1,36 @@
+{%load static%}
+<div align="center" class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+{%for row in pinturasdata%}
+{% if row.destacado == True %}
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+        <div class="item {% if forloop.first %} active {%endif%}">
+            <div class="item">
+                <img class="imagen" src="{{row.image.url}}" alt="..." style="width:100%;">
+                <div class="carousel-caption">                              
+                <h2>{{row.nombre_pintura}}</h2>
+                </div>
+            </div>
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{%endfor%}

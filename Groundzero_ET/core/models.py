@@ -8,8 +8,6 @@ from rest_framework.authtoken.models import Token
 
 # Create your models here.
 
-
-
 #Modelo para Categorias
 class Categoria(models.Model):
   idCategoria = models.AutoField(primary_key = True, verbose_name = 'id de categoria')

@@ -1,7 +1,7 @@
 from email import message
 from multiprocessing import context
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Autor, Pinturas
 from .forms import  crearUsuario, subirPintura
 from django.contrib.auth.models import User
@@ -20,6 +20,32 @@ def home(request):
 
 def mis_pinturas(request):
     return render(request,'core/mis-pinturas.html')
+
+def subir_pintura(request):    
+    form = subirPintura()
+    
+    if request.method== 'POST':
+        form = subirPintura(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect ('home')
+    context = {'form':form} 
+    return render(request, 'core/subirpintura.html', context)
+
+def modificar_pintura(request,id):
+    pinturas = get_object_or_404(Pinturas, idPintura=id)
+    form = subirPintura()
+    data ={
+        'form': subirPintura(instance=pinturas)
+    }
+
+    if request.method== 'POST':
+        form = subirPintura(data=request.POST, instance=pinturas, files=request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect ('home')
+    
+    return render(request, 'core/modificarpintura.html', data)
 
 def admin_pinturas(request):
     return render(request,'core/admin_pinturas.html')
@@ -94,14 +120,5 @@ def listapinturas(request):
     }
     return render(request, 'core/index.html', contexto)
 
-def subir_pintura(request):    
-    form = subirPintura()
-    
-    if request.method== 'POST':
-        form = subirPintura(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-        return redirect ('home')
-    context = {'form':form} 
-    return render(request, 'core/subirpintura.html', context)
+
 

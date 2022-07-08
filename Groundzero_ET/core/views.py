@@ -21,6 +21,9 @@ def home(request):
 def mis_pinturas(request):
     return render(request,'core/mis-pinturas.html')
 
+def admin_pinturas(request):
+    return render(request,'core/admin_pinturas.html')
+
 def paglogin(request):
     page = 'login'
     if request.method == 'POST':

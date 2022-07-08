@@ -37,7 +37,7 @@ class Pinturas(models.Model):
   categoria = models.ForeignKey(Categoria, default=True, on_delete = models.CASCADE)
   nombre_pintura = models.CharField(max_length = 20, verbose_name = 'Nombre Pintura')
   precio_pintura = models.IntegerField (null=True, blank =True, verbose_name = 'Precio')
-  autor = models.ForeignKey (Autor, on_delete = models.CASCADE)
+  autor = models.ForeignKey (User, on_delete = models.CASCADE)
  
   descripcion = models.TextField(max_length=300, blank= True, verbose_name='descripcion')
   fecha_creacion = models.DateField(verbose_name='fecha_creacion')

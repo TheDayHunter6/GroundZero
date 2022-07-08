@@ -1,9 +1,10 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
-from .views import home, logoutUser, paglogin, pagRegistro,  artistas, pinturas, pinturas2, compra, formulariofooter,subir_pintura, mis_pinturas
+from .views import home, logoutUser, paglogin, pagRegistro,  artistas, pinturas, pinturas2, compra, formulariofooter,subir_pintura, mis_pinturas, admin_pinturas
 
 #from cuenta.views import (registro_view, login1)
 from api_pintura.views import(lista_pintura, detalle_pintura)
+
 urlpatterns = [
     path('', home, name="home"),
     path('login/', paglogin, name="login"),
@@ -17,6 +18,7 @@ urlpatterns = [
     path('formulariofooter',formulariofooter,name="formulariofooter"),
     path('subir_pintura/',subir_pintura,name="subir pintura"),
     path('mis-pinturas',mis_pinturas,name="mis-pinturas"),
+    path('admin-pinturas',admin_pinturas,name="admin-pinturas"),
     
     #path('api/cuenta/', registro_view, name="registro_view"),
     #path('api/login/', login1, name="login1"),

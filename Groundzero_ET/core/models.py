@@ -8,18 +8,6 @@ from rest_framework.authtoken.models import Token
 
 # Create your models here.
 
-#Modelo para Autores
-class Autor(models.Model):
-  idAutor = models.AutoField(primary_key = True, verbose_name = 'id Autor')
-  pnombreAutor = models.CharField(max_length = 60, verbose_name = 'Primer nombre')
-  appaternoAutor = models.CharField(max_length = 60, verbose_name = 'Apellido')
-  edad = models.IntegerField(verbose_name = 'Edad')
-  anhio_nac = models.IntegerField(verbose_name = 'Fecha nacimiento') 
-  pais = models.CharField(max_length = 60, verbose_name = 'Pais') 
-
-  def __str__(self):
-    return self.pnombreAutor
-
 #Modelo para Categorias
 class Categoria(models.Model):
   idCategoria = models.AutoField(primary_key = True, verbose_name = 'id de categoria')
@@ -37,7 +25,7 @@ class Pinturas(models.Model):
   categoria = models.ForeignKey(Categoria, default=True, on_delete = models.CASCADE)
   nombre_pintura = models.CharField(max_length = 20, verbose_name = 'Nombre Pintura')
   precio_pintura = models.IntegerField (null=True, blank =True, verbose_name = 'Precio')
-  autor = models.ForeignKey (Autor, on_delete = models.CASCADE)
+  autor = models.ForeignKey (User, on_delete = models.CASCADE)
  
   descripcion = models.TextField(max_length=300, blank= True, verbose_name='descripcion')
   fecha_creacion = models.DateField(verbose_name='fecha_creacion')

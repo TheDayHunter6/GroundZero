@@ -1,9 +1,9 @@
 from email import message
 from multiprocessing import context
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404,render, redirect
 from .models import Pinturas
-from .forms import  crearUsuario, subirPintura
+from .forms import  crearUsuario, subirPintura, modificarPintura, ContactoForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout

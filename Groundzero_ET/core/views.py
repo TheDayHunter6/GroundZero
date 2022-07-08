@@ -2,7 +2,7 @@ from email import message
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Autor, Pinturas
+from .models import Pinturas
 from .forms import  crearUsuario, subirPintura
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -16,7 +16,11 @@ from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 def home(request):
-    return render(request,'core/index.html')
+    pinturasdata = Pinturas.objects.all()
+    context = {
+        'slider':pinturasdata
+    }
+    return render(request,'core/index.html', context)
 
 def mis_pinturas(request):
     return render(request,'core/mis-pinturas.html')

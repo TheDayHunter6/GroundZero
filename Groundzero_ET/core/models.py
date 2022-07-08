@@ -8,17 +8,7 @@ from rest_framework.authtoken.models import Token
 
 # Create your models here.
 
-#Modelo para Autores
-class Autor(models.Model):
-  idAutor = models.AutoField(primary_key = True, verbose_name = 'id Autor')
-  pnombreAutor = models.CharField(max_length = 60, verbose_name = 'Primer nombre')
-  appaternoAutor = models.CharField(max_length = 60, verbose_name = 'Apellido')
-  edad = models.IntegerField(verbose_name = 'Edad')
-  anhio_nac = models.IntegerField(verbose_name = 'Fecha nacimiento') 
-  pais = models.CharField(max_length = 60, verbose_name = 'Pais') 
 
-  def __str__(self):
-    return self.pnombreAutor
 
 #Modelo para Categorias
 class Categoria(models.Model):

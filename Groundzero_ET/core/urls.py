@@ -1,6 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
-from .views import home, logoutUser, paglogin, pagRegistro,  artistas, pinturas, pinturas2, compra, formulariofooter,subir_pintura, mis_pinturas, admin_pinturas
+from .views import admin_contacto, administrador, home, logoutUser, paglogin, pagRegistro,  artistas, pinturas, pinturas2, compra, formulariofooter,subir_pintura, mis_pinturas, admin_pinturas, modificar_pintura, eliminar_pintura, administrador, contacto
 from django.conf import settings
 from django.conf.urls.static import static
 

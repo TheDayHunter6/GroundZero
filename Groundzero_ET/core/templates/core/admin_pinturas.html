@@ -32,6 +32,7 @@
                     
                     $.each(data, function(i,item) {
                         var url = "href=/modificar-pinturas/"+ item.idPintura
+                        var url2 = "href=/eliminar-pinturas/"+ item.idPintura
                         var row = "<tr>" +
                                   "<td>" + item.idPintura + "</td>" +
                                   "<td><img src='"+ item.image +"'></td>" +
@@ -43,8 +44,9 @@
                                   "<td>" + item.autor + "</td>" +
                                   "<td>" + item.descripcion + "</td>" +
                                   "<td>" + item.fecha_creacion + "</td>" +
-                                  "<td>" + item.mensajeadmin + "</td>" +             
+                                  "<td>" + item.mensaje_admin + "</td>" +             
                                   "<td><a "+url+" >Modificar</a></td>" +             
+                                  "<td><a "+url2+" >Eliminar</a></td>" +             
                                     
                                   "</tr>";
                             

@@ -20,46 +20,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/35db202371.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
+    
+
+<script>
+  $(document).ready(function(){
+      $.ajax({
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/contacto/",
+          dataType: "json",
+
+          success: function(data) {
+              
+              $.each(data, function(i,item) {
+                  
+                  var row = "<tr>" +
+                  "<td>" + item.nombre + "</td>" +
+                  "<td>" + item.correo + "</td>" +
+                  "<td>" + item.tipo_consulta + "</td>" +
+                  "<td>" + item.mensaje + "</td>" +
+                  "<td>" + avisos + "</td>" +         
+                  "</tr>";
+                      
+                  $("#tpcontacto>tbody").append(row);
+                  
+              });
+          },
+      });
+
+  });
+</script>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Formularios de contacto</h2>
+        <table class="table table-striped  table-responsive" id="tcontacto">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Tipo de Consulta</th>
+              <th>Mensaje</th>
+              <th>Avisos</th>        
+            </tr>
+          </thead>
+          <tbody>
+         
+           
+            
+          </tbody>
+        </table>
+      </div>
+    
 
     
-</head>
 
-    <body>
-        <section class="our-projects">
-            <div class="skew-arriba"></div>
-            <div class="deg-background"></div>
-        
-            <div class="ejeZproject">
-            <div class="container-project">
-                <div class="project-title">
-                <h2>Mis Pinturas</h2>
-                <hr>
-                </div>
-                <a href="{%url 'subir pintura'%}">
-                    <button type="button" class="button">Subir Pintura</button>
-                </a>
-                {% for p in pinturas %}
-                    {% if p.autor == request.user %}
-                    <div class="project-img">
-                    
-                    <img src="{{ p.image.url }}" alt="imagenPintura",style= >
-                    <div>
-                        <h2> Pintura: {{ p.nombre_pintura }}</h2>
-                        <h2> Precio {{ p.precio_pintura }}</h2>
-                        <h2> Autor: {{ p.autor }}</h2>
-                        <h2>Descripcion:  {{ p.descripcion }}</h2>
-                        <h2> Fecha de creacion: {{ p.fecha_creacion }}</h2>
-                        <h2> mensaje del admin: {{ p.mensaje_admin }}</h2>
-                        <h2> Aprobada: {{ p.aprobada }}</h2>
-                    </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            </div>
-        </section>
-        
-    </body>
+
+
+    
+</body>
 
 
 </html>

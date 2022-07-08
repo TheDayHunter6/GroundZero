@@ -42,10 +42,27 @@ class Pinturas(models.Model):
   descripcion = models.TextField(max_length=300, blank= True, verbose_name='descripcion')
   fecha_creacion = models.DateField(verbose_name='fecha_creacion')
   
-  
-
   def __str__(self):
     return self.nombre_pintura
+
+
+opciones_consulta= [
+  [0,"consulta"],
+  [1,"reclamo"],
+  [2,"sugerencia"],
+  [3,"felicitaciones"],
+
+]
+#Modelo para Formulario
+class Contacto(models.Model):
+  nombre = models.CharField(max_length=50)
+  correo = models.EmailField()
+  tipo_consulta = models.IntegerField(choices=opciones_consulta)
+  mensaje = models.TextField()
+  avisos = models.BooleanField()
+
+  def __str__(self):
+    return self.nombre
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

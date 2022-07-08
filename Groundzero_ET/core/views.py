@@ -3,7 +3,7 @@ from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Autor, Pinturas
-from .forms import  crearUsuario, subirPintura
+from .forms import  crearUsuario, subirPintura, modificarPintura, ContactoForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -18,8 +18,22 @@ from rest_framework.permissions import IsAuthenticated
 def home(request):
     return render(request,'core/index.html')
 
+def administrador(request):
+    return render(request,'core/administrador.html')
+
+def pinturas(request):
+    pinturas = Pinturas.objects.all()
+    data = {
+        'pinturas': pinturas
+    }
+    return render(request, 'core/pinturas.html', data)
+
 def mis_pinturas(request):
-    return render(request,'core/mis-pinturas.html')
+    pinturas = Pinturas.objects.all()
+    data = {
+        'pinturas': pinturas
+    }
+    return render(request,'core/mis-pinturas.html', data)
 
 def subir_pintura(request):    
     form = subirPintura()
@@ -32,23 +46,43 @@ def subir_pintura(request):
     context = {'form':form} 
     return render(request, 'core/subirpintura.html', context)
 
-def modificar_pintura(request,id):
-    pinturas = get_object_or_404(Pinturas, idPintura=id)
-    form = subirPintura()
-    data ={
-        'form': subirPintura(instance=pinturas)
-    }
-
+def contacto(request):
+    form = ContactoForm()
+   
     if request.method== 'POST':
-        form = subirPintura(data=request.POST, instance=pinturas, files=request.FILES)
+        form = ContactoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return redirect ('home')
+    context = {'formcontacto':form} 
+    return render(request, 'core/contacto.html', context)
+
+def modificar_pintura(request,id):
+    pinturas = get_object_or_404(Pinturas, idPintura=id)
+    form = modificarPintura()
+    data ={
+        'form': modificarPintura(instance=pinturas)
+    }
+
+    if request.method== 'POST':
+        form = modificarPintura(data=request.POST, instance=pinturas, files=request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect ('admin-pinturas')
     
     return render(request, 'core/modificarpintura.html', data)
 
+def eliminar_pintura(request,id):
+    pinturas = get_object_or_404(Pinturas, idPintura=id)
+    pinturas.delete()
+    return redirect ('admin-pinturas')
+    
+
 def admin_pinturas(request):
     return render(request,'core/admin_pinturas.html')
+
+def admin_contacto(request):
+    return render(request,'core/admin_contacto.html')
 
 def paglogin(request):
     page = 'login'
@@ -92,12 +126,7 @@ def pagRegistro(request):
 def artistas(request):
     return render(request,'core/artistas.html')
 
-def pinturas(request):
-    pinturas = Pinturas.objects.all()
-    data = {
-        'pinturas': pinturas
-    }
-    return render(request, 'core/pinturas.html', data)
+
 
 def pinturas2(request):
     pinturas = Pinturas.objects.all()
@@ -119,6 +148,7 @@ def listapinturas(request):
         'Pinturas': lista,
     }
     return render(request, 'core/index.html', contexto)
+
 
 
 

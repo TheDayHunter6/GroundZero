@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'api_pintura',
+    'api_formulario',
     'rest_framework.authtoken',
     'rest_framework',
 ]

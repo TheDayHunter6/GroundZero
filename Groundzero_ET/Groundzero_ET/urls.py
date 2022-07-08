@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('api/', include('api_pintura.urls')),
+    path('api/', include('api_formulario.urls')),
 ]
 
 if settings.DEBUG:

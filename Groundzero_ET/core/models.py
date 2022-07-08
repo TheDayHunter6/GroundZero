@@ -22,11 +22,11 @@ class Pinturas(models.Model):
   image = models.ImageField(upload_to='pinturas', verbose_name='imagen')
   destacado = models.BooleanField(default=False,verbose_name="destacado")
   aprobada = models.BooleanField(default=False,verbose_name="aprobada")
+  mensaje_admin = models.TextField(max_length=300, blank= True, verbose_name='mensaje admin')
   categoria = models.ForeignKey(Categoria, default=True, on_delete = models.CASCADE)
   nombre_pintura = models.CharField(max_length = 20, verbose_name = 'Nombre Pintura')
   precio_pintura = models.IntegerField (null=True, blank =True, verbose_name = 'Precio')
   autor = models.ForeignKey (User, on_delete = models.CASCADE)
- 
   descripcion = models.TextField(max_length=300, blank= True, verbose_name='descripcion')
   fecha_creacion = models.DateField(verbose_name='fecha_creacion')
   
